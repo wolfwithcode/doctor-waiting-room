@@ -1,0 +1,14 @@
+<!-- // @view for card components  -->
+<!-- // @including card title and card content  -->
+<!-- // @author: Le Duc Anh  -->
+
+<div class="row justify-content-center mt-3">
+    <div data-bind="class: cardTypeFunc()">
+        <div class="border border-success rounded-lg">
+            <div class="bg-success px-4 py-2">
+                <card-title params="card_type: vm.stylePage.card_type()"></card-title>
+            </div>            
+            <card-content params="card_type: vm.stylePage.card_type()"></card-content>
+        </div>
+    </div>
+</div>

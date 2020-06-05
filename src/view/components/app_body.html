@@ -1,0 +1,9 @@
+<!-- // @view for body part or site content components -->
+<!-- // @includes card and title for waiting and consultation room -->
+<!-- // @non display welcome title for doctor dashboard -->
+<!-- // @author: Le Duc Anh  -->
+
+<div data-bind="visible: (vm.stylePage.card_type()==`waiting`)">
+    <welcome-title></welcome-title>
+</div>
+<card params="card_type: vm.stylePage.card_type()"></card>

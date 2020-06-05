@@ -1,0 +1,18 @@
+<!-- // @view for header components -->
+<!-- // @author: Le Duc Anh  -->
+
+<div class="d-flex justify-content-between align-self-center mt-4 px-xl-5">
+    <h1 class="text-success"><span class="text-secondary">V</span>See</h1>
+    <div class="d-flex align-items-center ">
+        <h6 class="text-dark d-inline-block mr-2 mt-2"><i class="fas fa-desktop"></i> Test Computer</h6>
+        <div data-bind="if: vm.stylePage.card_type()==`doctor`" class="dropdown d-inline-block">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i> Doctor
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Log out</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="bg-secondary mb-5" />

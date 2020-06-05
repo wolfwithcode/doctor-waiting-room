@@ -1,0 +1,16 @@
+<!-- // @view for card content components  -->
+<!-- // @description: depend on the views are waiting, consultation room or doctor dashboard  -->
+<!-- // @the component will render form, announcement or the table list of patients. -->
+<!-- // @author: Le Duc Anh  -->
+
+<div data-bind="if: vm.stylePage.card_type()==`waiting`">    
+    <div id="card-form">
+        <card-form></card-form>
+    </div>
+    <div id="card-announcement" style="display: none;">
+        <card-announcement></card-announcement>
+    </div>
+</div>
+<div data-bind="if: vm.stylePage.card_type()==`doctor`">
+    <card-patient-info></card-patient-info>
+</div>

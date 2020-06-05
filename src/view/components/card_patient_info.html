@@ -1,0 +1,46 @@
+<!-- // @view for list of patients waiting in doctor dashboard components  -->
+<!-- // @description: Information of patients in waiting list. The number of rows can be adjusted  -->
+<!-- // based on the number of clients  -->
+<!-- // @author: Le Duc Anh  -->
+
+<h5 class="p-5 font-weight-normal" data-bind="visible: vm.tickets().length==0">There is no patient in the waiting room.</h4>
+<div data-bind="if: vm.tickets().length>0">
+    <ul class="list-group" data-bind="foreach: { data: vm.tickets(), as: `ticket`}">
+        <li class="list-group-item">
+            <div class="row justify-content-between" >
+                <div class="col-5">
+                    <div class="row py-5 px-5">
+                        <div class="col-3 pr-5">
+                            <i class="fas fa-user fa-3x"></i>
+                        </div>
+                        <div class="col-7">
+                            <h5 data-bind="text: ticket.patient.patient_name"></h5>
+                            <h5 class="text-muted font-weight-normal" data-bind="text: ticket.patient.description"></h5>
+                            <h5 class="text-muted font-weight-normal" data-bind="text: ticket.patient.vsee_id"></h5>
+                        </div>
+                    </div>
+                </div>    
+                <div class="col-4 py-5">
+                    <h5 class="font-weight-normal"><i class="fas fa-video icon text-success"></i> Online</h5>
+                    <h5 class="font-weight-normal" data-bind="with: $parent.get_waiting_time.bind(ticket,ticket)"><i class="far fa-clock fa-flip-horizontal"></i> Waiting: 
+                        <span data-bind="class: ticket.patient.vsee_id">0</span> min
+                    </h5>
+                </div>
+                <div class="col-2 py-5">
+                    <div class="row">
+                        <button class="btn bg-warning text-light mr-1 mb-1" type="button">
+                            <i class="fas fa-comment"></i> 
+                        </button>
+                        <button class="btn bg-warning mr-1 mb-1" data-bind="click: $parent.call_patient.bind(ticket,ticket)" type="button">
+                            <i class="text-light fas fa-video icon"></i>           
+                        </button>
+                        <button class="btn bg-warning text-light mr-1 mb-1" type="button">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    
+</div>

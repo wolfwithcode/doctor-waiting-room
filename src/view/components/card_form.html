@@ -1,0 +1,23 @@
+<!-- // @view for card form components -->
+<!-- // @author: Le Duc Anh  -->
+
+<form method="post" class="p-4" data-bind="submit: addTicket" id="submit-form">
+    <div class="form-group">
+        <h5>Please fill in your name to proceed<sup><i class="fas fa-star text-danger" style="font-size:.5em;"></i></sup></h5>                        
+        <input class="form-control" type="text" name="id" 
+        placeholder="Your vsee id for doctor to call" data-bind="textInput: vm.data.patient_name" required>
+    </div>
+    <div class="form-group">                        
+        <h5>Reason for visit <span class="text-muted">(optional)</span></h5>
+        <textarea class="form-control waiting-room-form-text" name="message" 
+        placeholder="Your reason for visit" rows="3" data-bind="textInput: vm.data.description"></textarea>
+    </div>
+    <div class="form-group">
+        <h5>VSee ID<sup><i class="fas fa-star text-danger" style="font-size:.5em"></i></sup></h5>
+        <input class="form-control" type="text" name="id" 
+        placeholder="Your vsee id for doctor to call" data-bind="textInput: vm.data.vsee_id" required>
+    </div>                    
+    <button class="btn bg-warning text-light" id="btn-enter" type="submit">
+        Enter Waiting Room 
+    </button>
+</form>
