@@ -11,6 +11,33 @@ define(['knockout', 'model/ticket'], function(ko, Ticket){
         var deleted_ids = {};
         var message_list = {};
         var my_channel = "doctor_realtime";
+
+        //Fetch all the tickets in the channel
+        vm.pubnub.fetchMessages(
+            {
+              channels: [my_channel],
+              count: 25 // default/max is 25
+            },
+            function(status, response) {
+                const patient_id = {};
+                console.log(response.channels.doctor_realtime);
+                const messages = response.channels.doctor_realtime;
+                for (let i=0; i<messages.length; i++){
+                    // var index = vm.tickets().indexOf(ticket)
+                    const parsed_ticket = JSON.parse(messages[i].message.ticketJSON);
+                    
+                    const parsed_vsee_id = parsed_ticket.patient.vsee_id;
+                    console.log(parsed_vsee_id)
+                    if(!parsed_vsee_id in patient_id){
+                        vm.tickets().push(parsed_ticket);
+                        console.log("Test array", parsed_ticket)
+                        patient_id[parsed_vsee_id] = true;
+                    }
+                }
+                
+                console.log("test tickets",vm.tickets())
+            }
+          );
          
         //Update, delele pubnub messages
         function display_messages(msg, channel) {

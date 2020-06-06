@@ -1,7 +1,7 @@
 <!-- // @view for card form components -->
 <!-- // @author: Le Duc Anh  -->
 
-<form method="post" class="p-4" data-bind="submit: addTicket" id="submit-form">
+<form method="post" class="p-4" data-bind="submit: addTicket.bind(vm.data,vm.data)" id="submit-form">
     <div class="form-group">
         <h5>Please fill in your name to proceed<sup><i class="fas fa-star text-danger" style="font-size:.5em;"></i></sup></h5>                        
         <input class="form-control" type="text" name="id" 

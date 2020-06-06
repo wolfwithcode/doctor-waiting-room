@@ -70,6 +70,12 @@ define(['knockout', 'model/ticket'], function(ko, Ticket){
             document.getElementById('submit-form').reset();
         }
 
+        if(vm.data.vsee_id!=null){
+            document.getElementById("card-waiting-title").style.display = "none";
+            document.getElementById("card-form").style.display = "none";
+            this.addTicket();
+        }
+
         //Reconnect the call if closed by mistake
         this.callDoctor = () => {            
             ticket = new Ticket(vm.data);
@@ -87,7 +93,9 @@ define(['knockout', 'model/ticket'], function(ko, Ticket){
                     deleted: true
                 }
             }).then((msg)=> {
-
+                // window.close();
+                vm.data = {};
+                sessionStorage.clear();
                 window.open("index.html","_self");
             }).catch((err) => {
                 console.log('There are some errors to submit your information. Please retry! ' + err)

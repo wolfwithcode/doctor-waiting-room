@@ -45,9 +45,24 @@ define(['knockout', 'pubnub', 'model/ticket'],function(ko, PubNub, Ticket){
             publishKey : 'pub-c-20a698d6-25e0-4ec1-b2fb-82dd60180c11', 
             subscribeKey : 'sub-c-1e90958c-a4b7-11ea-9dab-228a91b64ea0'
         });
+       
+        //========Save data to session storage when reload page====
+        window.onload = function(){    
+            if(sessionStorage.getItem('vsee_id')!=null){
+                self.data.vsee_id = sessionStorage.getItem('vsee_id');
+                self.data.patient_name = sessionStorage.getItem('patient_name');
+                self.data.description = sessionStorage.getItem('description');
+            }        
+        }
 
-        // window.open("doctor_dashboard.html")
-
+        // Before refreshing the page, save the form data to sessionStorage
+        window.onbeforeunload = function() {
+            if(vm.data.vsee_id!=null){
+                sessionStorage.setItem("vsee_id", vm.data.vsee_id);
+                sessionStorage.setItem("patient_name", vm.data.patient_name);
+                sessionStorage.setItem("description", vm.data.description);  
+            }
+        }
     }
     vm = new AppViewModel();
 
