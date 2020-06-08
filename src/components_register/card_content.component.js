@@ -3,7 +3,7 @@
 
 // Import components
 require(['components_register/card_form.component']);
-require(['components_register/card_announcement.component']);
+require(['components_register/card_patient_waiting.component']);
 require(['components_register/card_patient_info.component']);
 
 define(['knockout'],function(ko){

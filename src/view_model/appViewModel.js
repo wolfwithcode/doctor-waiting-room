@@ -19,7 +19,9 @@ define(['knockout', 'pubnub', 'model/ticket'],function(ko, PubNub, Ticket){
        if(location.href.split("/").slice(-1)[0] == 'doctor_dashboard.html'){
             self.stylePage = new StylePage(ko.observable('doctor'));
        } else if (location.href.split("/").slice(-1)[0] == 'index.html') {
-            self.stylePage = new StylePage(ko.observable('waiting'));
+            self.stylePage = new StylePage(ko.observable('index'));
+       } else if (location.href.split("/").slice(-1)[0] == 'patient_waiting.html') {
+            self.stylePage = new StylePage(ko.observable('patient_waiting'));
        }
 
         // ==============Model global variables===============================
@@ -30,15 +32,20 @@ define(['knockout', 'pubnub', 'model/ticket'],function(ko, PubNub, Ticket){
             vsee_id: ko.observable(""),
             patient_name: ko.observable(""),
             description: ko.observable("")
-        });
-        //Declare and initialize processing patient can be null or 1 patient at a time
+        });        
+        //Declare and initialize processing_room, can be null or 1 patient at a time
         //Processing_room contains 2 properties which are value and time start the consultation
         //Value is a booleen, true when there is a patient in waiting room, false when no patient.
         self.processing_room = ko.observable({
             active: ko.observable(false), 
-            vsee_id: ko.observable("")
+            vsee_id: ko.observable(""),
+            new_open_time: new Date()
         });
-         
+
+        //Declare and initialize patient waiting status. Can be in progress or busy.
+        // If doctor call the patient to the progressing room. The status will be progress
+        // If doctor call patient but another person is in progressing room, the patient status will be busy.
+        self.patient_status = ko.observable("");
 
         //===============Pubnub Config=============================
         self.pubnub = new PubNub({
@@ -52,15 +59,20 @@ define(['knockout', 'pubnub', 'model/ticket'],function(ko, PubNub, Ticket){
                 self.data.vsee_id = sessionStorage.getItem('vsee_id');
                 self.data.patient_name = sessionStorage.getItem('patient_name');
                 self.data.description = sessionStorage.getItem('description');
+                self.patient_status = sessionStorage.getItem('patient_status');
+                self.new_open_time = sessionStorage.getItem('new_open_time');
             }        
         }
 
-        // Before refreshing the page, save the form data to sessionStorage
+        // Before refreshing the page, save the form data and patient status to sessionStorage
         window.onbeforeunload = function() {
             if(vm.data.vsee_id!=null){
                 sessionStorage.setItem("vsee_id", vm.data.vsee_id);
                 sessionStorage.setItem("patient_name", vm.data.patient_name);
                 sessionStorage.setItem("description", vm.data.description);  
+                sessionStorage.setItem("patient_status", vm.patient_status);
+                // if(vm.new_open_time == null ) vm.new_open_time = new Date();
+                // sessionStorage.setItem("new_open_time", vm.new_open_time);
             }
         }
     }

@@ -1,9 +1,10 @@
 <!-- // @view for body part or site content components -->
-<!-- // @includes card and title for waiting and consultation room -->
-<!-- // @non display welcome title for doctor dashboard -->
+<!-- // @includes card and welcome title. -->
+<!-- // @The welcome title will display for index and patient waiting page -->
+<!-- // @non display for doctor dashboard -->
 <!-- // @author: Le Duc Anh  -->
 
-<div data-bind="visible: (vm.stylePage.card_type()==`waiting`)">
+<div data-bind="visible: (vm.stylePage.card_type()==`index` || vm.stylePage.card_type()==`patient_waiting`)">
     <welcome-title></welcome-title>
 </div>
 <card params="card_type: vm.stylePage.card_type()"></card>

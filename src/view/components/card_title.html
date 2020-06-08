@@ -1,13 +1,11 @@
 <!-- // @view for card-title components -->
 <!-- // @author: Le Duc Anh  -->
 
-<div class="text-light" data-bind="visible: vm.stylePage.card_type()==`waiting`">
-    <div id="card-waiting-title">
-        <h4><i class="fas fa-video icon"></i> Talk to An Nguyen</h4>
-    </div>
-    <div id="card-announcement-title" style="display: none;">
-        <h4><i class="far fa-clock fa-flip-horizontal"></i> Connecting with your provider</h4>
-    </div>
+<div class="text-light" data-bind="visible: vm.stylePage.card_type()==`index`">
+    <h4><i class="fas fa-video icon"></i> Talk to An Nguyen</h4>
+</div>
+<div class="text-light" data-bind="visible: vm.stylePage.card_type()==`patient_waiting`">
+    <h4><i class="far fa-clock fa-flip-horizontal"></i> Connecting with your provider</h4>
 </div>
 <div class="text-light" data-bind="visible: vm.stylePage.card_type()==`doctor`">
     <div class="d-flex justify-content-between ">        
